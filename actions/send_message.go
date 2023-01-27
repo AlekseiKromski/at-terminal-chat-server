@@ -14,8 +14,11 @@ func (sm *SendMessage) SetData(data string) {
 	sm.Data = data
 }
 
-func (sm *SendMessage) Do() {
+func (sm *SendMessage) Do() string {
 	sm.run()
+
+	//return text from message
+	return sm.Data
 }
 func (sm *SendMessage) TrigType() string {
 	return "to_all"
