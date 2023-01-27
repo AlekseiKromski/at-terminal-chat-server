@@ -4,6 +4,7 @@ import (
 	"at-terminal-chat-server/models"
 	"encoding/json"
 	"fmt"
+	atClientLib "github.com/AlekseiKromski/at-socket-server/client"
 	"github.com/AlekseiKromski/at-socket-server/core"
 )
 
@@ -30,12 +31,22 @@ func (ta *ToAll) Do() {
 
 		//Ignore the user, who sent this message
 		if client.ID == ta.Client.ID {
-			break
+			continue
 		}
 
-		response := models.ResponseModel{
+		message := models.Message{
+			From:    string(client.ID),
+			Message: ta.Data,
+		}
+		encodedMessage, err := json.Marshal(message)
+		if err != nil {
+			fmt.Println("cannot marshal message")
+			return
+		}
+
+		response := atClientLib.AtServerResponse{
 			ClientActionType: "get_message",
-			Data:             ta.Data,
+			Data:             string(encodedMessage),
 		}
 		encoded, err := json.Marshal(response)
 		if err != nil {
