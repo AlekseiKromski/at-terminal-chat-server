@@ -8,7 +8,7 @@ pipeline {
         }
         stage('deploy') {
             steps {
-                sh "pm2 start"
+                sh "pm2 start ecosystem.config.json"
             }
         }
     }
