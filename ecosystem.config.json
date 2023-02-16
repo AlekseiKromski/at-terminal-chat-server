@@ -1,0 +1,6 @@
+{
+    "apps" : [{
+      "name"        : "at-terminal-chat-server",
+      "script"      : "./at-terminal-chat-server"
+    }]
+}
