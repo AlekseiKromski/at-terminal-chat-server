@@ -1,0 +1,10 @@
+version: '3.3'
+
+services:
+  at-terminal-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: at-terminal-server
+    ports:
+      - "3050:${PORT}"
