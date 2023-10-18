@@ -5,6 +5,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: at-terminal-server
+    container_name: "at-terminal-server"
     ports:
       - "3050:${PORT}"
