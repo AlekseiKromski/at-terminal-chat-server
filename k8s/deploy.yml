@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: at-terminal-chat-server
+  labels:
+    app: at-terminal-chat-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: at-terminal-chat-server
+  template:
+    metadata:
+      labels:
+        app: at-terminal-chat-server
+    spec:
+      containers:
+        - name: at-terminal-chat-server-dev
+          image: docker.alekseikromski.com/at-terminal-chat-server:1.0
+          resources:
+            requests:
+              cpu: "100m"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3050
+      imagePullSecrets:
+        - name: regcred
