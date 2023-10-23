@@ -7,6 +7,7 @@ import (
 	"fmt"
 	atClient "github.com/AlekseiKromski/at-socket-server/client"
 	"github.com/AlekseiKromski/at-socket-server/core"
+	"log"
 )
 
 var actionHandlers = []*core.ActionHandler{
@@ -24,6 +25,7 @@ var triggerHandlers = []*core.TriggerHandler{
 }
 
 func main() {
+	log.Printf("INIT PROGRAMM")
 	app, err := core.Start(actionHandlers, triggerHandlers)
 	if err != nil {
 		fmt.Println(err)
