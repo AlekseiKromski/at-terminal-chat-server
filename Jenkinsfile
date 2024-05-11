@@ -16,8 +16,8 @@ pipeline {
         }
         stage('Apply Kubernetes files') {
             steps {
-                withKubeConfig([credentialsId: 'kubernetes', serverUrl: 'http://192.168.0.108:8001']) {
-                  sh 'kubectl apply -f ./k8s/deploy.yml --force'
+                withEnv(["KUBECONFIG=/.kube/config"]) {
+                    sh "kubectl apply -f ./k8s/deploy.yml --force"
                 }
             }
         }
